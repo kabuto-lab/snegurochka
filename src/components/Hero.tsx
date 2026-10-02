@@ -66,7 +66,7 @@ export const Hero: FC = () => {
   }, [current]);
 
   return (
-    <div className="relative h-[620px] w-full overflow-hidden md:h-[720px]">
+    <div className="relative h-155 w-full overflow-hidden md:h-180">
       <div>
         {SLIDES.map((slide, i) => (
           <div
@@ -102,7 +102,7 @@ export const Hero: FC = () => {
               }}
             />
             <div
-              className="absolute top-0 bottom-0 left-0 box-border flex w-[min(980px,90%)] flex-col justify-center pr-5 pl-5 md:w-[min(980px,74%)] md:pr-6 md:pl-[var(--hero-edge)]"
+              className="absolute top-0 bottom-0 left-0 box-border flex w-[min(980px,90%)] flex-col justify-center pr-5 pl-5 md:w-[min(980px,74%)] md:pr-6 md:pl-(--hero-edge)"
               style={{ ["--hero-edge" as string]: HERO_EDGE }}
             >
               <span className="text-[10px] font-bold tracking-[0.2em] text-foreground uppercase md:text-[11px]">
@@ -153,7 +153,7 @@ export const Hero: FC = () => {
       <Sparkles count={16} />
 
       <div
-        className="absolute right-5 bottom-11 z-6 flex items-end gap-2.5 md:right-[var(--hero-edge)]"
+        className="absolute right-5 bottom-11 z-6 flex items-end gap-2.5 md:right-(--hero-edge)"
         style={{ ["--hero-edge" as string]: HERO_EDGE }}
       >
         {SLIDES.map((slide, i) => (
@@ -172,7 +172,7 @@ export const Hero: FC = () => {
       </div>
 
       <div
-        className="absolute right-5 bottom-25 z-6 flex gap-2.5 md:right-[var(--hero-edge)]"
+        className="absolute right-5 bottom-25 z-6 flex gap-2.5 md:right-(--hero-edge)"
         style={{ ["--hero-edge" as string]: HERO_EDGE }}
       >
         <button
