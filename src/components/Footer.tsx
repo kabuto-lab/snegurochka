@@ -1,13 +1,16 @@
 "use client";
 
 import { FC } from "react";
-import { NAV_HREFS } from "./constants";
+import { NAV_HREFS, VACANCIES_HREF } from "./constants";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export const Footer: FC = () => {
     const { t } = useLanguage();
-    const footerLinks = NAV_HREFS.map((href, i) => ({ href, label: t.footer.links[i] }));
-    const [col1, col2] = [footerLinks.slice(0, 2), footerLinks.slice(2, 4)];
+    const footerLinks = [
+        ...NAV_HREFS.map((href, i) => ({ href, label: t.footer.links[i] })),
+        { href: VACANCIES_HREF, label: t.nav.vacancies },
+    ];
+    const [col1, col2] = [footerLinks.slice(0, 3), footerLinks.slice(3)];
 
     return (
         <footer className="max-w-325 w-full mx-auto py-8 px-5 flex flex-col gap-7 border-t border-solid border-[rgba(236,233,247,.08)] md:py-10 md:px-12 md:gap-9">
