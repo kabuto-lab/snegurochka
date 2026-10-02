@@ -3,6 +3,7 @@ export type LangCode = "ru" | "en" | "cn";
 export interface Translation {
   nav: {
     links: string[];
+    vacancies: string;
     cta: string;
     openMenu: string;
     closeMenu: string;
@@ -78,12 +79,39 @@ export interface Translation {
     ageBadge: string;
     disclaimer: string;
   };
+  vacancies: {
+    eyebrow: string;
+    heading: string;
+    subheading: string;
+    nameLabel: string;
+    phoneLabel: string;
+    emailLabel: string;
+    roleLabel: string;
+    rolePlaceholder: string;
+    messageLabel: string;
+    messagePlaceholder: string;
+    optional: string;
+    consent: string;
+    submit: string;
+    submitting: string;
+    successTitle: string;
+    successBody: string;
+    sendAnother: string;
+    errors: {
+      required: string;
+      phone: string;
+      email: string;
+      consent: string;
+      server: string;
+    };
+  };
 }
 
 export const TRANSLATIONS: Record<LangCode, Translation> = {
   ru: {
     nav: {
       links: ["Сертификаты", "Lounge", "VIP", "Программы"],
+      vacancies: "Вакансии",
       cta: "Записаться",
       openMenu: "Открыть меню",
       closeMenu: "Закрыть меню",
@@ -251,10 +279,39 @@ export const TRANSLATIONS: Record<LangCode, Translation> = {
       ageBadge: "18+",
       disclaimer: "СЕЗОННОЕ ПРЕДЛОЖЕНИЕ · НЕ ЯВЛЯЕТСЯ ИНТИМ-УСЛУГОЙ",
     },
+    vacancies: {
+      eyebrow: "Работа в команде",
+      heading: "Вакансии",
+      subheading:
+        "Оставьте заявку — мы свяжемся с вами, расскажем об условиях и ответим на вопросы.",
+      nameLabel: "Имя",
+      phoneLabel: "Телефон",
+      emailLabel: "Email",
+      roleLabel: "Интересующая роль",
+      rolePlaceholder: "Например, администратор",
+      messageLabel: "Дополнительная информация",
+      messagePlaceholder: "Опыт работы, удобный график, удобное время для звонка",
+      optional: "необязательно",
+      consent:
+        "Я согласен(на) с условиями обработки персональных данных и политикой конфиденциальности",
+      submit: "Отправить заявку",
+      submitting: "Отправляем…",
+      successTitle: "Заявка отправлена",
+      successBody: "Спасибо! Мы свяжемся с вами в ближайшее время.",
+      sendAnother: "Отправить ещё одну",
+      errors: {
+        required: "Заполните это поле",
+        phone: "Введите корректный номер телефона",
+        email: "Введите корректный email",
+        consent: "Необходимо согласие на обработку данных",
+        server: "Не удалось отправить заявку. Попробуйте ещё раз.",
+      },
+    },
   },
   en: {
     nav: {
       links: ["Certificates", "Lounge", "VIP", "Programs"],
+      vacancies: "Careers",
       cta: "Book now",
       openMenu: "Open menu",
       closeMenu: "Close menu",
@@ -422,10 +479,39 @@ export const TRANSLATIONS: Record<LangCode, Translation> = {
       ageBadge: "18+",
       disclaimer: "SEASONAL OFFER · NOT AN INTIMATE SERVICE",
     },
+    vacancies: {
+      eyebrow: "Join our team",
+      heading: "Careers",
+      subheading:
+        "Leave an application — we'll get in touch, tell you about the terms and answer your questions.",
+      nameLabel: "Name",
+      phoneLabel: "Phone",
+      emailLabel: "Email",
+      roleLabel: "Role of interest",
+      rolePlaceholder: "For example, administrator",
+      messageLabel: "Additional information",
+      messagePlaceholder: "Work experience, preferred schedule, best time to call",
+      optional: "optional",
+      consent:
+        "I agree to the terms of personal data processing and the privacy policy",
+      submit: "Submit application",
+      submitting: "Sending…",
+      successTitle: "Application sent",
+      successBody: "Thank you! We'll get in touch with you shortly.",
+      sendAnother: "Send another",
+      errors: {
+        required: "Please fill in this field",
+        phone: "Please enter a valid phone number",
+        email: "Please enter a valid email",
+        consent: "Consent to data processing is required",
+        server: "Couldn't send the application. Please try again.",
+      },
+    },
   },
   cn: {
     nav: {
       links: ["礼品卡", "休闲区", "VIP", "项目"],
+      vacancies: "招聘",
       cta: "立即预约",
       openMenu: "打开菜单",
       closeMenu: "关闭菜单",
@@ -592,6 +678,32 @@ export const TRANSLATIONS: Record<LangCode, Translation> = {
         "© 2026年。本会所网络季节性优惠活动。不涉及任何亲密性质服务。18+",
       ageBadge: "18+",
       disclaimer: "季节性优惠 · 不涉及亲密服务",
+    },
+    vacancies: {
+      eyebrow: "加入我们的团队",
+      heading: "招聘",
+      subheading: "请留下您的申请——我们将与您联系，介绍工作条件并解答您的问题。",
+      nameLabel: "姓名",
+      phoneLabel: "电话",
+      emailLabel: "电子邮箱",
+      roleLabel: "意向职位",
+      rolePlaceholder: "例如：管理员",
+      messageLabel: "补充信息",
+      messagePlaceholder: "工作经验、期望的工作时间、方便接听电话的时间",
+      optional: "选填",
+      consent: "我同意个人数据处理条款及隐私政策",
+      submit: "提交申请",
+      submitting: "正在提交…",
+      successTitle: "申请已提交",
+      successBody: "谢谢！我们会尽快与您联系。",
+      sendAnother: "再提交一份",
+      errors: {
+        required: "请填写此项",
+        phone: "请输入有效的电话号码",
+        email: "请输入有效的电子邮箱",
+        consent: "请同意个人数据处理条款",
+        server: "提交失败，请重试。",
+      },
     },
   },
 };

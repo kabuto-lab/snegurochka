@@ -6,7 +6,9 @@ export const LANGS: { code: LangCode; label: string }[] = [
   { code: "cn", label: "中" },
 ];
 
-export const NAV_HREFS = ["#certificates", "#lounge", "#vip", "#programs"];
+export const NAV_HREFS = ["/#certificates", "/#lounge", "/#vip", "/#programs"];
+
+export const VACANCIES_HREF = "/vacancies";
 
 export const SALON_PHOTOS = [
   [

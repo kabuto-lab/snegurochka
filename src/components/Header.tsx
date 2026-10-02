@@ -3,7 +3,7 @@
 import { FC, useEffect, useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
-import { NAV_HREFS } from "./constants";
+import { NAV_HREFS, VACANCIES_HREF } from "./constants";
 import { LangSwitch } from "./LangSwitch";
 import { WHATSAPP_HREF } from "@/lib/constants";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
@@ -11,7 +11,10 @@ import { useLanguage } from "@/lib/i18n/LanguageContext";
 export const Header: FC = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const { t } = useLanguage();
-  const navLinks = NAV_HREFS.map((href, i) => ({ href, label: t.nav.links[i] }));
+  const navLinks = [
+    ...NAV_HREFS.map((href, i) => ({ href, label: t.nav.links[i] })),
+    { href: VACANCIES_HREF, label: t.nav.vacancies },
+  ];
 
   useEffect(() => {
     if (!isMenuOpen) return;
@@ -100,14 +103,14 @@ export const Header: FC = () => {
         </button>
 
         {navLinks.map((link) => (
-          <a
+          <Link
             key={link.label}
             href={link.href}
             onClick={() => setMenuOpen(false)}
             className="cursor-pointer py-2 text-2xl font-semibold text-foreground/85 transition-colors duration-300 hover:text-accent-light"
           >
             {link.label}
-          </a>
+          </Link>
         ))}
         <a
           href="tel:+79160073259"
