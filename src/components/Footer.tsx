@@ -1,6 +1,7 @@
 "use client";
 
 import { FC } from "react";
+import Image from "next/image";
 import { NAV_HREFS, VACANCIES_HREF } from "./constants";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
@@ -16,7 +17,7 @@ export const Footer: FC = () => {
         <footer className="max-w-325 w-full mx-auto py-8 px-5 flex flex-col gap-7 border-t border-solid border-[rgba(236,233,247,.08)] md:py-10 md:px-12 md:gap-9">
             <div className="flex w-full flex-col items-start gap-8 md:flex-row md:items-start md:justify-between md:gap-0">
                 <div className="flex flex-col gap-3 max-w-[320px]">
-                    <span className="font-display text-2xl font-bold italic text-foreground md:text-[26px]">Снегурочка</span>
+                    <Image src="/snegurochka-white.svg" alt="Снегурочка Москва" width={1178} height={440} unoptimized className="h-14 w-auto" />
                     <p className="text-[12px] text-foreground-faint">
                         {t.footer.copyright}
                     </p>

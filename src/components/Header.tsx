@@ -2,6 +2,7 @@
 
 import { FC, useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { NAV_HREFS, VACANCIES_HREF } from "./constants";
 import { LangSwitch } from "./LangSwitch";
@@ -35,12 +36,20 @@ export const Header: FC = () => {
   return (
     <header className="absolute inset-x-0 top-0 z-50 w-full bg-linear-to-b from-background/60 via-background/25 to-transparent">
       <div className="relative flex items-center justify-between gap-4 px-5 py-4 lg:px-12 lg:py-6">
-        <div className="flex items-baseline gap-2">
+        <div className="flex items-center">
           <Link
             href="/"
-            className="font-display cursor-pointer text-2xl font-bold text-foreground italic transition-colors duration-300 hover:text-accent-light lg:text-[26px]"
+            className="block cursor-pointer"
           >
-            Снегурочка
+            <Image
+              src="/snegurochka-white.svg"
+              alt="Снегурочка Москва"
+              width={1178}
+              height={440}
+              unoptimized
+              priority
+              className="h-12 w-auto lg:h-14"
+            />
           </Link>
         </div>
 
