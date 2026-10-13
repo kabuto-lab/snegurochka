@@ -36,6 +36,7 @@ export const Lottery: FC = () => {
                   alt={gift.title}
                   fill
                   unoptimized
+                  loading="eager"
                   sizes="(min-width: 768px) 438px, 90vw"
                   className="scale-105 object-cover transition-transform duration-500 group-hover:scale-110"
                 />

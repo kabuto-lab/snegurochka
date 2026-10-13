@@ -18,11 +18,18 @@ const SNOWFLAKES = Array.from({ length: 34 }, (_, i) => ({
 }));
 
 const HERO_EDGE = "max(56px, calc(50% - 668px))";
+// Tiny previews keep the hero visually filled while the full-size photos load.
+const HERO_BLURS = [
+  "data:image/jpeg;base64,/9j/2wBDABcQERQRDhcUEhQaGBcbIjklIh8fIkYyNSk5UkhXVVFIUE5bZoNvW2F8Yk5QcptzfIeLkpSSWG2grJ+OqoOPko3/2wBDARgaGiIeIkMlJUONXlBejY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY3/wAARCAAKABADASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABAEC/8QAJRAAAgECAwkBAAAAAAAAAAAAAQIDAAQhMmEREhMUMUFxgYOx/8QAFQEBAQAAAAAAAAAAAAAAAAAAAgP/xAAXEQADAQAAAAAAAAAAAAAAAAAAAQJB/9oADAMBAAIRAxEAPwAto8k68u7FI4GCqQcDoR3Otbv4omeK2Y8Iyjbly+fYoNl1+h/BUtyZLti5LEb2bGhpaZTR/9k=",
+  "data:image/jpeg;base64,/9j/2wBDABcQERQRDhcUEhQaGBcbIjklIh8fIkYyNSk5UkhXVVFIUE5bZoNvW2F8Yk5QcptzfIeLkpSSWG2grJ+OqoOPko3/2wBDARgaGiIeIkMlJUONXlBejY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY3/wAARCAAKABADASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAQIDBf/EAB8QAQEAAQQCAwAAAAAAAAAAAAECEQADBCExcRIiwf/EABUBAQEAAAAAAAAAAAAAAAAAAAID/8QAFxEBAAMAAAAAAAAAAAAAAAAAABEhQf/aAAwDAQACEQMRAD8AwtmKOyXC9VjrOr8j5Rdb0UsrhehM/mk491JJNINX4fWjdLx93Kv1PL60NWin/9k=",
+  "data:image/jpeg;base64,/9j/2wBDABcQERQRDhcUEhQaGBcbIjklIh8fIkYyNSk5UkhXVVFIUE5bZoNvW2F8Yk5QcptzfIeLkpSSWG2grJ+OqoOPko3/2wBDARgaGiIeIkMlJUONXlBejY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY3/wAARCAAKABADASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAwT/xAAjEAACAQIEBwAAAAAAAAAAAAABAgMAEQQFEiEUIjJBUWGB/8QAFAEBAAAAAAAAAAAAAAAAAAAAA//EABcRAQADAAAAAAAAAAAAAAAAAAARIkH/2gAMAwEAAhEDEQA/ABy6WCSUq0oAIuobYEAb/abGCE4dbFS2tTpBvov2qXCInFxcq9Pj1T5mqoCEUKCqE2Ft70emir//2Q==",
+];
 
 export const Hero: FC = () => {
   const { t } = useLanguage();
   const SLIDES = HERO_PHOTOS.map((photo, i) => ({ photo, ...t.hero.slides[i] }));
   const [current, setCurrent] = useState(0);
+  const [incomingIndex, setIncomingIndex] = useState<number | null>(null);
   const [isTransitioning, setTransitioning] = useState(false);
   const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -33,8 +40,8 @@ export const Hero: FC = () => {
     
     if (incoming && outgoing) {
       setTransitioning(true);
+      setIncomingIndex(index);
 
-      incoming.style.zIndex = "3";
       incoming.style.transition = "none";
       incoming.style.clipPath = "circle(0% at 92% 88%)";
       incoming.getBoundingClientRect();
@@ -45,9 +52,8 @@ export const Hero: FC = () => {
       });
 
       window.setTimeout(() => {
-        outgoing.style.zIndex = "1";
-        incoming.style.zIndex = "2";
         setCurrent(index);
+        setIncomingIndex(null);
         setTransitioning(false);
       }, 1200);
 
@@ -66,7 +72,7 @@ export const Hero: FC = () => {
   }, [current]);
 
   return (
-    <div className="relative h-155 w-full overflow-hidden md:h-180">
+    <div className="relative h-155 w-full overflow-hidden bg-background md:h-180">
       <div>
         {SLIDES.map((slide, i) => (
           <div
@@ -75,7 +81,11 @@ export const Hero: FC = () => {
               slideRefs.current[i] = el;
             }}
             className="absolute inset-0 [clip-path:circle(150%_at_92%_88%)] transition-[clip-path] duration-1150 ease-[cubic-bezier(0.65,0,0.35,1)]"
-            style={{ zIndex: current === i ? 2 : 1 }}
+            style={{
+              zIndex: incomingIndex === i ? 3 : current === i ? 2 : 1,
+              visibility: current === i || incomingIndex === i ? "visible" : "hidden",
+            }}
+            aria-hidden={current !== i && incomingIndex !== i}
           >
             <div className="absolute inset-[-4%] animate-[kenburns_20s_ease-in-out_infinite_alternate]">
               <Image
@@ -85,6 +95,8 @@ export const Hero: FC = () => {
                 sizes="100vw"
                 className="object-cover"
                 priority={i === 0}
+                placeholder="blur"
+                blurDataURL={HERO_BLURS[i]}
               />
             </div>
             <div

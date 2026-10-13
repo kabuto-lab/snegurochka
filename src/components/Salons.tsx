@@ -120,7 +120,6 @@ export const Salons: FC = () => {
               fill
               sizes="(min-width: 768px) 45vw, 90vw"
               className="object-cover"
-              priority
             />
             <span className="absolute top-3 right-3 z-10 flex size-9 items-center justify-center rounded-full border border-foreground/25 bg-background/40 text-foreground backdrop-blur-sm transition-colors duration-300 group-hover:border-accent-light/60 group-hover:text-accent-light">
               <Expand size={16} strokeWidth={1.8} />
