@@ -59,8 +59,8 @@ export const HERO_PHOTOS = [
 ];
 
 export const GIFT_PHOTOS = [
-  "/lottery/lottery-img-1.avif",
-  "/lottery/lottery-img-2.avif",
+  "/lottery/lottery-img-1.webp",
+  "/lottery/lottery-img-2.webp",
 ];
 
 export const ADDON_PHOTOS = [
